@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   motion,
@@ -27,12 +27,11 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/buttonVariants";
-import { formatMoney } from "@/domain/money";
+import { formatMoneyWhole } from "@/domain/money";
 
 
 export function LandingPage() {
   const shouldReduceMotion = useReducedMotion();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Interactive Demo state
@@ -45,28 +44,22 @@ export function LandingPage() {
   }>({
     purchase: 1500,
     newBalance: 8500,
-    newDailyAllowance: Math.floor(8500 / 30),
-    deltaDaily: 333 - Math.floor(8500 / 30),
+    newDailyAllowance: Math.floor(7402 / 30),
+    deltaDaily: Math.floor(7402 / 30) - Math.floor((7402 - 1500) / 30),
   });
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleSimulate = (amountVal?: number) => {
     const num = amountVal !== undefined ? amountVal : parseFloat(purchaseAmount) || 0;
     const clamped = Math.max(0, Math.min(10000, num));
-    const newBal = 10000 - clamped;
-    const newDaily = Math.floor(newBal / 30);
-    const baselineDaily = Math.floor(10000 / 30); // 333
+    const safeToSpend = 7402;
+    const spentFromSafe = Math.min(safeToSpend, clamped);
+    const remainingSafe = Math.max(0, safeToSpend - spentFromSafe);
+    const newDaily = Math.floor(remainingSafe / 30);
+    const baselineDaily = Math.floor(safeToSpend / 30);
 
     setSimulatedState({
       purchase: clamped,
-      newBalance: newBal,
+      newBalance: 10000 - clamped,
       newDailyAllowance: newDaily,
       deltaDaily: baselineDaily - newDaily,
     });
@@ -84,10 +77,7 @@ export function LandingPage() {
       {/* 1. NAVIGATION BAR */}
       <header
         className={cn(
-          "sticky top-0 z-50 transition-all duration-300",
-          isScrolled
-            ? "border-b border-border/80 bg-bg-base/85 backdrop-blur-md shadow-lg shadow-black/20"
-            : "border-b border-transparent bg-transparent"
+          "sticky top-0 z-50 transition-all duration-300 border-b border-transparent bg-bg-base/85 backdrop-blur-md shadow-lg shadow-black/20"
         )}
       >
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -153,9 +143,9 @@ export function LandingPage() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
-              animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, height: "auto" }}
-              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0 }}
+              animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1 }}
+              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className="overflow-hidden border-b border-border bg-surface px-4 py-6 md:hidden sm:px-6"
             >
@@ -165,7 +155,7 @@ export function LandingPage() {
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-lg px-3 py-2 text-base font-medium text-muted transition-colors hover:bg-elevated hover:text-ink"
+                    className="min-h-[44px] rounded-lg px-3 py-2.5 text-base font-medium text-muted transition-colors hover:bg-elevated hover:text-ink"
                   >
                     {link.name}
                   </a>
@@ -215,7 +205,7 @@ export function LandingPage() {
                 </div>
 
                 {/* Main Headline */}
-                <h1 className="mt-6 font-[family-name:var(--font-display)] text-4xl font-extrabold tracking-tight text-ink sm:text-6xl sm:leading-[1.12] lg:text-[4rem]">
+                <h1 className="mt-6 font-[family-name:var(--font-display)] text-3xl font-extrabold tracking-tight text-ink sm:text-5xl sm:leading-[1.12] lg:text-[3.75rem] leading-tight text-balance">
                   Make your money <br className="hidden sm:inline" />
                   <span className="bg-gradient-to-r from-ink via-lime to-brand bg-clip-text text-transparent">
                     move smarter.
@@ -278,20 +268,9 @@ export function LandingPage() {
                 {/* Floating Card Top-Right: Savings Badge */}
                 <motion.div
                   initial={shouldReduceMotion ? false : { opacity: 0, x: 20 }}
-                  animate={
-                    shouldReduceMotion
-                      ? { opacity: 1 }
-                      : {
-                          opacity: 1,
-                          x: 0,
-                          y: [0, -6, 0],
-                        }
-                  }
-                  transition={{
-                    opacity: { duration: 0.5, delay: 0.2 },
-                    y: { repeat: Infinity, duration: 4.5, ease: "easeInOut" },
-                  }}
-                  className="absolute -top-6 -right-2 z-20 hidden sm:flex items-center gap-3 rounded-2xl border border-border/80 bg-surface/90 px-4 py-3 shadow-[0_16px_32px_rgba(0,0,0,0.4)] backdrop-blur-md"
+                  animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+                  transition={{ opacity: { duration: 0.5, delay: 0.2 } }}
+                  className="absolute -top-6 -right-2 z-20 hidden sm:flex items-center gap-3 rounded-2xl border border-border/80 bg-surface/90 px-4 py-3 shadow-[0_16px_32px_rgba(0,0,0,0.4)] backdrop-blur-md float-lime"
                 >
                   <div className="grid size-9 place-items-center rounded-xl bg-lime/15 text-lime">
                     <PiggyBank size={18} />
@@ -305,20 +284,9 @@ export function LandingPage() {
                 {/* Floating Card Bottom-Left: Mini Spending Insight */}
                 <motion.div
                   initial={shouldReduceMotion ? false : { opacity: 0, x: -20 }}
-                  animate={
-                    shouldReduceMotion
-                      ? { opacity: 1 }
-                      : {
-                          opacity: 1,
-                          x: 0,
-                          y: [0, 6, 0],
-                        }
-                  }
-                  transition={{
-                    opacity: { duration: 0.5, delay: 0.35 },
-                    y: { repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.5 },
-                  }}
-                  className="absolute -bottom-7 -left-4 z-20 hidden sm:flex items-center gap-3 rounded-2xl border border-border/80 bg-surface/90 px-4 py-3 shadow-[0_16px_32px_rgba(0,0,0,0.4)] backdrop-blur-md"
+                  animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+                  transition={{ opacity: { duration: 0.5, delay: 0.35 } }}
+                  className="absolute -bottom-7 -left-4 z-20 hidden sm:flex items-center gap-3 rounded-2xl border border-border/80 bg-surface/90 px-4 py-3 shadow-[0_16px_32px_rgba(0,0,0,0.4)] backdrop-blur-md float-brand"
                 >
                   <div className="grid size-9 place-items-center rounded-xl bg-brand-soft text-brand">
                     <Flame size={18} />
@@ -359,7 +327,7 @@ export function LandingPage() {
                       <span className="rounded bg-white/20 px-2 py-0.5 text-[11px]">OCT 2026</span>
                     </div>
                     <div className="mt-3 font-[family-name:var(--font-display)] text-4xl font-extrabold tracking-tight tabular-nums sm:text-5xl">
-                      {formatMoney(10000)}
+                      {formatMoneyWhole(1000000)}
                     </div>
                     <div className="mt-3 flex items-center justify-between text-xs text-white/80">
                       <span>Total pool allocated</span>
@@ -441,7 +409,7 @@ export function LandingPage() {
                 <Layers size={13} />
                 <span>Feature Architecture</span>
               </div>
-              <h2 className="mt-4 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              <h2 className="mt-4 font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-ink sm:text-3xl leading-tight">
                 Engineered for 30-day certainty.
               </h2>
               <p className="mt-3 text-base text-muted sm:text-lg">
@@ -450,8 +418,7 @@ export function LandingPage() {
               </p>
             </div>
 
-            {/* Varied Layout Grid */}
-            <div className="mt-14 space-y-6">
+            {/* Varied Layout Grid */}                    <div className="mt-12 space-y-6">
               {/* Row 1: Full-width Featured Card (Smart Budget Tracking) */}
               <motion.div
                 whileHover={shouldReduceMotion ? {} : { y: -4, borderColor: "rgba(198,244,50,0.4)" }}
@@ -732,7 +699,7 @@ export function LandingPage() {
                 <Sparkles size={13} />
                 <span>Simple 3-Step Framework</span>
               </div>
-              <h2 className="mt-4 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              <h2 className="mt-4 font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-ink sm:text-3xl leading-tight">
                 Master your month in three moves.
               </h2>
               <p className="mt-3 text-base text-muted sm:text-lg">
@@ -823,7 +790,7 @@ export function LandingPage() {
                 <SlidersHorizontal size={13} />
                 <span>Try It Live</span>
               </div>
-              <h2 className="mt-4 font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+              <h2 className="mt-4 font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-ink sm:text-3xl leading-tight">
                 Experience the ripple effect.
               </h2>
               <p className="mt-3 text-base text-muted sm:text-lg">
@@ -857,7 +824,7 @@ export function LandingPage() {
                         value={purchaseAmount}
                         onChange={(e) => setPurchaseAmount(e.target.value)}
                         placeholder="1500"
-                        className="w-full rounded-control border border-border bg-elevated py-3.5 pl-9 pr-4 text-lg font-bold text-ink placeholder:text-muted/50 focus:border-lime focus:outline-none focus:ring-2 focus:ring-lime/40"
+                        className="min-h-[44px] w-full rounded-control border border-border bg-elevated py-3.5 pl-9 pr-4 text-lg font-bold text-ink placeholder:text-muted/50 focus:border-lime focus:outline-none focus:ring-2 focus:ring-lime/40"
                       />
                     </div>
                   </div>
@@ -896,7 +863,7 @@ export function LandingPage() {
                   <div className="rounded-xl bg-elevated/70 p-3.5 text-xs text-muted flex items-start gap-2.5 border border-border/50">
                     <AlertCircle size={16} className="text-lime shrink-0 mt-0.5" />
                     <span>
-                      Based on a 30-day month baseline of ₹10,000 (starting daily allowance of ₹333/day).
+                      Based on a 30-day plan with ₹7,402 safe-to-spend, equal to a starting daily allowance of about ₹246/day.
                     </span>
                   </div>
                 </div>
@@ -940,7 +907,7 @@ export function LandingPage() {
                         <div className="rounded-xl border border-border bg-surface p-4">
                           <span className="text-xs text-muted">New Month Balance</span>
                           <div className="mt-1 font-[family-name:var(--font-display)] text-2xl font-extrabold text-ink tabular-nums">
-                            {formatMoney(simulatedState.newBalance)}
+                            {formatMoneyWhole(Math.round(simulatedState.newBalance * 100))}
                           </div>
                           <div className="mt-1 text-xs text-pink flex items-center gap-1 font-semibold">
                             <span>-₹{simulatedState.purchase.toLocaleString("en-IN")}</span>
@@ -956,7 +923,11 @@ export function LandingPage() {
                             <span className="text-xs font-normal text-muted"> / day</span>
                           </div>
                           <div className="mt-1 text-xs text-pink flex items-center gap-1 font-semibold">
-                            <span>-₹{simulatedState.deltaDaily}/day drop</span>
+                            {simulatedState.deltaDaily > 0 ? (
+                              <span>-₹{simulatedState.deltaDaily}/day drop</span>
+                            ) : (
+                              <span className="text-good">+₹{Math.abs(simulatedState.deltaDaily)}/day</span>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -998,7 +969,7 @@ export function LandingPage() {
                         <span className="text-lime font-bold">
                           ₹{simulatedState.newDailyAllowance}/day
                         </span>{" "}
-                        instead of ₹333/day.
+                        instead of about ₹246/day.
                       </div>
                     </motion.div>
                   </AnimatePresence>
@@ -1022,9 +993,7 @@ export function LandingPage() {
             <div className="inline-flex items-center gap-2 rounded-full border border-lime/30 bg-lime/10 px-3.5 py-1 text-xs font-semibold text-lime">
               <Sparkles size={13} />
               <span>Take Control Today</span>
-            </div>
-
-            <h2 className="mt-6 font-[family-name:var(--font-display)] text-4xl font-extrabold tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            </div>              <h2 className="mt-6 font-[family-name:var(--font-display)] text-3xl font-extrabold tracking-tight text-ink sm:text-4xl lg:text-5xl leading-tight text-balance">
               Ready to master your next 30 days?
             </h2>
 

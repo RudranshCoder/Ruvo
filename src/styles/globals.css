@@ -49,6 +49,14 @@
       scroll-behavior: auto !important;
     }
   }
+
+  /* Touch target minimums for interactive controls */
+  button,
+  a[role="button"],
+  label[for],
+  input[type="submit"] {
+    min-height: 44px;
+  }
 }
 
 @layer components {
@@ -75,6 +83,33 @@
 
   .glow-brand {
     box-shadow: var(--shadow-glow-brand);
+  }
+
+  /* Lightweight CSS float used by marketing visuals */
+  .float-lime {
+    animation: float-lime 4.5s ease-in-out infinite;
+  }
+
+  .float-brand {
+    animation: float-brand 5s ease-in-out infinite;
+  }
+
+  @keyframes float-lime {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  @keyframes float-brand {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(6px);
+    }
   }
 }
 

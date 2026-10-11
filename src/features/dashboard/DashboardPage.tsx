@@ -18,7 +18,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { MetricCard } from "@/components/ui/MetricCard";
 import { buttonVariants } from "@/components/ui/buttonVariants";
-import { formatMoney } from "@/domain/money";
+import { formatMoneyWhole } from "@/domain/money";
 import { cn } from "@/lib/utils";
 
 const containerVariants = {
@@ -113,7 +113,7 @@ export function DashboardPage() {
                   transition={{ duration: 0.4, ease: "easeOut" }}
                   className="font-[family-name:var(--font-display)] text-5xl font-extrabold tracking-[-0.07em] text-white tabular-nums sm:text-6xl"
                 >
-                  {formatMoney(10000)}
+                  {formatMoneyWhole(1000000)}
                 </motion.p>
                 <p className="mt-2 text-sm text-white/80">
                   A 30-day budget, ready to shape.
@@ -137,13 +137,13 @@ export function DashboardPage() {
               <div>
                 <p className="text-xs font-medium text-white/70">Balance</p>
                 <p className="mt-1 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight tabular-nums sm:text-xl">
-                  {formatMoney(10000)}
+                  {formatMoneyWhole(1000000)}
                 </p>
               </div>
               <div>
                 <p className="text-xs font-medium text-white/70">Daily allowance</p>
                 <p className="mt-1 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-lime tabular-nums sm:text-xl">
-                  {formatMoney(246)}
+                  {formatMoneyWhole(24673)}
                 </p>
               </div>
               <div className="col-span-2 sm:col-span-1">
@@ -207,28 +207,28 @@ export function DashboardPage() {
         <MetricCard
           icon={ShieldCheck}
           label="Safe to Spend (Preview)"
-          value={formatMoney(7402)}
+          value={formatMoneyWhole(740200)}
           trend="up"
           trendLabel="74% buffer"
         />
         <MetricCard
           icon={Coins}
           label="Daily Allowance (Preview)"
-          value={formatMoney(246)}
+          value={formatMoneyWhole(24673)}
           trend="neutral"
           trendLabel="Base pace"
         />
         <MetricCard
           icon={CalendarClock}
           label="Commitments Due"
-          value={formatMoney(1098)}
+          value={formatMoneyWhole(109800)}
           trend="neutral"
           trendLabel="Fixed"
         />
         <MetricCard
           icon={PiggyBank}
           label="Savings Goal"
-          value={formatMoney(1500)}
+          value={formatMoneyWhole(150000)}
           trend="up"
           trendLabel="15% target"
         />
@@ -274,7 +274,7 @@ export function DashboardPage() {
           <dl className="mt-5 grid gap-3.5">
             <div className="flex justify-between gap-4 rounded-control bg-elevated/40 p-2.5 text-sm">
               <dt className="text-muted">Budget</dt>
-              <dd className="font-semibold tabular-nums text-ink">{formatMoney(10000)}</dd>
+              <dd className="font-semibold tabular-nums text-ink">{formatMoneyWhole(1000000)}</dd>
             </div>
             <div className="flex justify-between gap-4 rounded-control bg-elevated/40 p-2.5 text-sm">
               <dt className="text-muted">Duration</dt>

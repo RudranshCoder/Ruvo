@@ -30,8 +30,6 @@
 
 </div>
 
-> **Status:** Phase 1 is complete (landing page, app shell and design system). The calculation engine, persistence and full simulator are on the [roadmap](#roadmap).
-
 **Live demo:** [add your deployed URL here](https://example.com)
 
 ---
