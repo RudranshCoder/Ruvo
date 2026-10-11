@@ -1,0 +1,3 @@
+import { cn } from "@/lib/utils";
+type ProgressProps = { value: number; label: string; className?: string };
+export function Progress({ value, label, className }: ProgressProps) { const bounded = Math.max(0, Math.min(100, value)); return <div className={cn("grid gap-2", className)}><div className="flex justify-between gap-3 text-sm"><span className="text-muted">{label}</span><span className="font-semibold tabular-nums">{bounded}%</span></div><div className="h-2 overflow-hidden rounded-full bg-elevated"><div className="h-full rounded-full bg-lime transition-[width] duration-200 motion-reduce:transition-none" style={{ width: `${bounded}%` }} /></div></div>; }

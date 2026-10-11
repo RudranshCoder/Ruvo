@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F0F1A" />
+      <stop offset="50%" stop-color="#0B0B14" />
+      <stop offset="100%" stop-color="#07070D" />
+    </linearGradient>
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3A3A52" />
+      <stop offset="50%" stop-color="#242436" />
+      <stop offset="100%" stop-color="#14141F" />
+    </linearGradient>
+    <linearGradient id="brandIconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A78BFA" />
+      <stop offset="50%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#6D28D9" />
+    </linearGradient>
+    <linearGradient id="limeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2FF66" />
+      <stop offset="100%" stop-color="#C6F432" />
+    </linearGradient>
+    <radialGradient id="purpleGlow" cx="20%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="limeGlow" cx="80%" cy="40%" r="45%">
+      <stop offset="0%" stop-color="#C6F432" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#C6F432" stop-opacity="0" />
+    </radialGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#C6F432" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Surface Card -->
+  <rect x="2" y="2" width="1196" height="436" rx="28" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="2" />
+
+  <!-- Ambient Glow Spotlights -->
+  <rect x="2" y="2" width="1196" height="436" rx="28" fill="url(#purpleGlow)" />
+  <rect x="2" y="2" width="1196" height="436" rx="28" fill="url(#limeGlow)" />
+
+  <!-- Subtle Background Grid Accent -->
+  <g opacity="0.06" stroke="#FFFFFF" stroke-width="1">
+    <line x1="80" y1="0" x2="80" y2="440" />
+    <line x1="200" y1="0" x2="200" y2="440" />
+    <line x1="320" y1="0" x2="320" y2="440" />
+    <line x1="440" y1="0" x2="440" y2="440" />
+    <line x1="560" y1="0" x2="560" y2="440" />
+    <line x1="680" y1="0" x2="680" y2="440" />
+    <line x1="800" y1="0" x2="800" y2="440" />
+    <line x1="920" y1="0" x2="920" y2="440" />
+    <line x1="1040" y1="0" x2="1040" y2="440" />
+    <line x1="1160" y1="0" x2="1160" y2="440" />
+    <line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="200" x2="1200" y2="200" />
+    <line x1="0" y1="300" x2="1200" y2="300" />
+  </g>
+
+  <!-- ================= LOGO SYMBOL BADGE ================= -->
+  <g transform="translate(100, 80)">
+    <rect x="0" y="0" width="110" height="110" rx="30" fill="#141422" stroke="#2E2E44" stroke-width="2" />
+    
+    <!-- Ambient badge glow -->
+    <circle cx="85" cy="25" r="30" fill="#8B5CF6" opacity="0.25" />
+    <circle cx="25" cy="85" r="28" fill="#C6F432" opacity="0.15" />
+
+    <!-- Stem of R -->
+    <path d="M32 30C32 27.79 33.79 26 36 26H43C45.21 26 47 27.79 47 30V80C47 82.21 45.21 84 43 84H36C33.79 84 32 82.21 32 80V30Z" fill="url(#brandIconGrad)" />
+
+    <!-- Loop of R -->
+    <path d="M47 26H61C71.5 26 80 34.5 80 45C80 55.5 71.5 64 61 64H47V26ZM47 51H60C63.3 51 66 48.3 66 45C66 41.7 63.3 39 60 39H47V51Z" fill="url(#brandIconGrad)" />
+
+    <!-- Vector Arrow Leg -->
+    <path d="M53 58L76 82C77.4 83.4 79.3 84 81.2 84H86C88 84 89 81.7 87.7 80.2L67 57.5C65.8 56.1 63.8 55.5 62 55.7L56 56.2C54.3 56.3 53 57.5 53 58Z" fill="url(#limeGrad)" filter="url(#softGlow)" />
+    
+    <!-- Sparkle -->
+    <polygon points="84,24 87,31 94,34 87,37 84,44 81,37 74,34 81,31" fill="#C6F432" opacity="0.95" />
+  </g>
+
+  <!-- ================= VECTOR WORDMARK "RUVO" ================= -->
+  <g transform="translate(236, 102)" fill="#F4F4FA">
+    <!-- Letter R -->
+    <path d="M0 12C0 5.37258 5.37258 0 12 0H31C45.3594 0 57 11.6406 57 26C57 35.7336 51.6437 44.208 43.7663 48.6558L57.5756 67.8703C59.102 69.9936 57.587 73 54.9754 73H42.492C40.8038 73 39.2241 72.1207 38.3126 70.6931L27.5 53.5H18V67C18 70.3137 15.3137 73 12 73H6C2.68629 73 0 70.3137 0 67V12ZM18 16V37.5H30.5C36.8513 37.5 42 32.3513 42 26C42 19.6487 36.8513 16 30.5 16H18Z" />
+
+    <!-- Letter u -->
+    <path d="M75 22C75 18.6863 77.6863 16 81 16H90C93.3137 16 96 18.6863 96 22V50C96 55.5228 100.477 60 106 60C111.523 60 116 55.5228 116 50V22C116 18.6863 118.686 16 122 16H131C134.314 16 137 18.6863 137 22V50C137 62.7025 126.703 73 114 73C105.972 73 98.8877 68.8787 94.7578 62.6108C93.2173 68.9103 87.5029 73 80.7588 73H78C74.6863 73 72 70.3137 72 67V61C72 57.6863 74.6863 55 78 55H80.5C85.1944 55 89 51.1944 89 46.5V22C89 18.6863 86.3137 16 83 16H81C77.6863 16 75 18.6863 75 22Z" opacity="0.95" />
+
+    <!-- Letter v -->
+    <path d="M155 22C155 18.6863 157.686 16 161 16H167.3C170.283 16 172.83 18.1885 173.322 21.1387L183.5 82L193.678 21.1387C194.17 18.1885 196.717 16 199.7 16H206C209.314 16 212 18.6863 212 22C212 22.5976 211.908 23.1895 211.733 23.7637L197.483 70.2637C195.922 75.3555 191.234 79 185.75 79H181.25C175.766 79 171.078 75.3555 169.517 70.2637L155.267 23.7637C155.092 23.1895 155 22.5976 155 22Z" opacity="0.95" />
+
+    <!-- Letter o -->
+    <path d="M230 44.5C230 28.7599 242.76 16 258.5 16C274.24 16 287 28.7599 287 44.5C287 60.2401 274.24 73 258.5 73C242.76 73 230 60.2401 230 44.5ZM247.5 44.5C247.5 50.8513 252.649 56 259 56C265.351 56 270.5 50.8513 270.5 44.5C270.5 38.1487 265.351 33 259 33C252.649 33 247.5 38.1487 247.5 44.5Z" opacity="0.95" />
+
+    <!-- Electric Lime Trajectory Dot -->
+    <circle cx="308" cy="62" r="7.5" fill="#C6F432" filter="url(#softGlow)" />
+  </g>
+
+  <!-- Subtitle Category Pill -->
+  <g transform="translate(566, 138)">
+    <rect x="0" y="0" width="232" height="26" rx="13" fill="#1C1C2B" stroke="#2F2F44" stroke-width="1" />
+    <text x="16" y="17" fill="#C6F432" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="11" letter-spacing="2">FINANCE SIMULATOR</text>
+  </g>
+
+  <!-- ================= MAIN TAGLINE & PROPOSITION ================= -->
+  <text x="100" y="248" fill="#F4F4FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="34" letter-spacing="-0.02em">
+    Make your money move smarter.
+  </text>
+  <text x="100" y="288" fill="#A3A3BA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="400" font-size="18">
+    A prospective, simulation-first copilot to manage ₹10,000 over 30 days and stress-test choices before spending.
+  </text>
+
+  <!-- ================= PILL BADGES ================= -->
+  <g transform="translate(100, 340)">
+    <!-- Pill 1: Budget Envelope -->
+    <rect x="0" y="0" width="220" height="42" rx="21" fill="#181828" stroke="#313148" stroke-width="1.2" />
+    <circle cx="20" cy="21" r="6" fill="#C6F432" />
+    <text x="36" y="26" fill="#F4F4FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="14">₹10,000 Starting Plan</text>
+
+    <!-- Pill 2: What-If Simulation -->
+    <rect x="236" y="0" width="248" height="42" rx="21" fill="#181828" stroke="#313148" stroke-width="1.2" />
+    <circle cx="256" cy="21" r="6" fill="#8B5CF6" />
+    <text x="272" y="26" fill="#F4F4FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="14">What-If Decision Simulator</text>
+
+    <!-- Pill 3: Daily Allowance -->
+    <rect x="500" y="0" width="224" height="42" rx="21" fill="#181828" stroke="#313148" stroke-width="1.2" />
+    <circle cx="520" cy="21" r="6" fill="#22D3EE" />
+    <text x="536" y="26" fill="#F4F4FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="14">Daily Allowance Engine</text>
+
+    <!-- Pill 4: Offline Privacy -->
+    <rect x="740" y="0" width="200" height="42" rx="21" fill="#181828" stroke="#313148" stroke-width="1.2" />
+    <circle cx="760" cy="21" r="6" fill="#34D399" />
+    <text x="776" y="26" fill="#F4F4FA" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="14">100% Client-Side Private</text>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+:root {
+  --font-display: "Unbounded", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Albert Sans", ui-sans-serif, system-ui, sans-serif;
+  --bg-base: #0b0b14;
+  --bg-surface: #14141f;
+  --bg-elevated: #1c1c2b;
+  --border-subtle: #2a2a3d;
+  --text-primary: #f4f4fa;
+  --text-secondary: #a3a3ba;
+  --brand: #8b5cf6;
+  --brand-soft: #2a1f4d;
+  --accent-lime: #c6f432;
+  --accent-pink: #ff5da2;
+  --accent-cyan: #22d3ee;
+  --status-good: #34d399;
+  --status-watch: #fbbf24;
+  --status-bad: #fb7185;
+  --radius-card: 20px;
+  --radius-control: 14px;
+  --shadow-card: 0 24px 60px rgba(0, 0, 0, 0.26);
+  --bg-glass: rgba(20, 20, 31, 0.8);
+  --shadow-glow-lime: 0 0 30px rgba(198, 244, 50, 0.15);
+  --shadow-glow-brand: 0 0 30px rgba(139, 92, 246, 0.2);
+  --gradient-brand: linear-gradient(135deg, #8b5cf6 0%, #5b21b6 50%, #3b0764 100%);
+  --gradient-surface: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-base) 100%);
+}

@@ -1,0 +1,3 @@
+import { cva } from "class-variance-authority";
+
+export const buttonVariants = cva("inline-flex min-h-11 items-center justify-center gap-2 rounded-control px-4 text-sm font-semibold transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none disabled:opacity-40 active:scale-[0.98]", { variants: { variant: { primary: "bg-brand text-white hover:brightness-110", secondary: "border border-border bg-elevated text-ink hover:bg-surface", ghost: "text-muted hover:bg-elevated hover:text-ink" }, size: { default: "h-12", compact: "h-10 px-3" } }, defaultVariants: { variant: "primary", size: "default" } });
